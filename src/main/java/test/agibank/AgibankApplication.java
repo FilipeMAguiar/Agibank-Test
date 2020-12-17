@@ -1,7 +1,6 @@
 package test.agibank;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.util.StringUtils;
 import test.agibank.entity.Customer;
 import test.agibank.entity.Item;
 import test.agibank.entity.Sale;
