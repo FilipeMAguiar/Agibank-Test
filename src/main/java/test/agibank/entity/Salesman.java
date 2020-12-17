@@ -2,48 +2,26 @@ package test.agibank.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-import test.agibank.service.CustomerService;
-import test.agibank.service.SaleService;
-import test.agibank.service.SalesmanService;
-
-import java.util.List;
 
 @Getter
 @Setter
-public class Salesman extends GenericIdentifier {
+public class Salesman {
 
-    private final String cpf;
-    private final String name;
-    private final Double salary;
-    private List<Sale> sales;
-    private Double valueSold;
+    private String name;
+    private Double salary;
+    private Double sale;
+    private String cpf;
 
-    public Salesman(String[] info) {
-        this.cpf = info[1];
-        this.name = info[2];
-        this.salary = Double.parseDouble(info[3]);
+    public Salesman(String name, Double salary, String cpf) {
+        this.name = name;
+        this.salary = salary;
+        this.cpf = cpf;
+        this.sale = (double) 0;
     }
-
-    public void calcSaleValue() {
-        Double sum = (double) 0;
-        for (Sale sale : sales){
-            sum = sale.getTotalValue();
-        }
-        this.valueSold = sum;
+    public void addSale(double price){
+        sale += price;
     }
-
-    @Override
-    public void sale(SaleService saleService) {
-
-    }
-
-    @Override
-    public void salesmanData(SalesmanService salesmanService) {
-        salesmanService.addSalesman(this);
-    }
-
-    @Override
-    public void customer(CustomerService customerService) {
-
+    public double getTotalSold(){
+        return sale;
     }
 }
